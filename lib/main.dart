@@ -19,7 +19,7 @@ class UserGuardApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
       ),
-      home: const MyGuardHomePage(title: 'UserGuard Home Page'),
+      home: const MyGuardHomePage(title: 'UserGuard App'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -55,11 +55,23 @@ class _MyGuardHomePageState extends State<MyGuardHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        titleSpacing: 0,
+        centerTitle: true,
+        toolbarHeight: 60, // default
+        toolbarOpacity: 1,
+        elevation: 6,
+        backgroundColor: Colors.green,
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              Scaffold.of(context).openEndDrawer();
+              // FIXED: Using ScaffoldMessenger instead of Scaffold
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Settings button pressed!'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
             },
           ),
         ],
